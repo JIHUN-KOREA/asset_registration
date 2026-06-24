@@ -542,8 +542,12 @@
   };
 
   /* ========= 1~7인 기본 표 기준 ========= */
-  const URBAN_BASE = [1435,2359,3015,3658,4264,4838,5392];
-  const RURAL_BASE = [ 975,1604,2050,2487,2899,3289,3666];
+  /*const URBAN_BASE = [1435,2359,3015,3658,4264,4838,5392];
+  const RURAL_BASE = [ 975,1604,2050,2487,2899,3289,3666];*/
+
+  const URBAN_BASE = [1538,2519,3215,3896,4533,5133,5709];
+  const RURAL_BASE = [1045,1712,2186,2649,3082,3490,3882];
+
 
   /* ========= 시나리오 라우팅 ========= */
   const ROUTES = {
@@ -766,12 +770,12 @@
   function baseThreshold(k, rural) {
     if (!rural) { // 도시
       if (k <= 7) return URBAN_BASE[k-1];
-      // 7인가구 초과: 1인당 554천원 증가
-      return 5392 + (k - 7) * 554;
+      // 7인가구 초과: 1인당 575천원 증가
+      return 5709 + (k - 7) * 575;
     } else {      // 농촌
       if (k <= 7) return RURAL_BASE[k-1];
-      // 7인가구 초과: 1인당 377천원 증가
-      return 3666 + (k - 7) * 377;
+      // 7인가구 초과: 1인당 391천원 증가
+      return 3882 + (k - 7) * 391;
     }
   }
 
@@ -851,8 +855,8 @@
     for (let k = startCol; k <= endCol; k++) headCells.push(`<th>${k}인가구</th>`);
     const thead = `<thead><tr>${headCells.join('')}</tr></thead>`;
 
-    const rowUrban = ['<th>도시지역(2025년)</th>'];
-    const rowRural = ['<th>농촌지역(2025년)</th>'];
+    const rowUrban = ['<th>도시지역(2026년)</th>'];
+    const rowRural = ['<th>농촌지역(2026년)</th>'];
     for (let k = startCol; k <= endCol; k++) {
       rowUrban.push(`<td>${comma(baseThreshold(k, false))}</td>`);
       rowRural.push(`<td>${comma(baseThreshold(k, true))}</td>`);
@@ -885,8 +889,8 @@
     for (let k = startCol; k <= endCol; k++) headCells.push(`<th>${k}인가구</th>`);
     const thead = `<thead><tr>${headCells.join('')}</tr></thead>`;
 
-    const rowUrban = ['<th>도시지역(2025년)</th>'];
-    const rowRural = ['<th>농촌지역(2025년)</th>'];
+    const rowUrban = ['<th>도시지역(2026년)</th>'];
+    const rowRural = ['<th>농촌지역(2026년)</th>'];
     for (let k = startCol; k <= endCol; k++) {
       rowUrban.push(`<td>${comma(baseThreshold(k, false))}</td>`);
       rowRural.push(`<td>${comma(baseThreshold(k, true))}</td>`);
